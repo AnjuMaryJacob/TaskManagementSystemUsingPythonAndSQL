@@ -95,15 +95,15 @@ def view_tasks():
 
 
 def delete_task():
-    taskid = int(input("Enter employee id : "))
-    c.execute("""DELETE FROM Task WHERE tid = ?""", (taskid,))
+    taskid = int(input("Enter task id : "))
+    c.execute("""DELETE FROM Task WHERE TaskID = ?""", (taskid,))
     con.commit()
 
     print("Task Deleted")
 
 def delete_user():
     empid = int(input("Enter employee id : "))
-    c.execute("""DELETE FROM User WHERE id = ?""", (empid,))
+    c.execute("""DELETE FROM User WHERE ID = ?""", (empid,))
     con.commit()
 
     print("User Deleted")
@@ -156,7 +156,7 @@ def employeeloginfn():
 
 def view_employee_tasks(empid):
 
-    c.execute("SELECT * FROM Task WHERE Eid = ?", (empid,))
+    c.execute("SELECT * FROM Task WHERE EID = ?", (empid,))
 
     for i in c.fetchall():
         print(i)
@@ -166,7 +166,7 @@ def update_task(empid):
     st = input("Enter task status: ")
     de = input("Enter task end date: ")
     tid = int(input("Enter Task ID: "))
-    c.execute("UPDATE Task SET TaskStatus = ?, EndDate WHERE Eid = ? AND TaskId", (st, de, id,tid))
+    c.execute("UPDATE Task SET TaskStatus = ?, EndDate=? WHERE EID = ? AND TaskID", (st, de, empid,tid))
     con.commit()
 
 
